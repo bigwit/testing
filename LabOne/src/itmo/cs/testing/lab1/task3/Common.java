@@ -20,6 +20,12 @@ public class Common {
 		artur.setFocus(ford);
 	}
 	
+	public void sentenceThree() {
+		artur = new Artur();
+		artur.setAction(new Action(Options.SIMPLE, "WANT"));
+		
+	}
+	
 	// инфа о Форде
 	public Ford getFord() {
 		return this.ford;
