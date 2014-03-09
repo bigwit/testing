@@ -4,8 +4,7 @@ public enum Options {
 	
 	GLASS,
 	SMALL,
-	YELLOW,
 	SIMPLE,
-	BLINK;
+	WINK;
 	
 }

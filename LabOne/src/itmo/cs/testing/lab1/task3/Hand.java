@@ -14,11 +14,15 @@ public class Hand {
 		item = new Object();
 	}
 	
-	// кладем в куру какой-то конкретный объект
+	// кладем в руку какой-то конкретный объект
 	// либо говорим какого типа объект положить
-	public void put(Object object, Class typeOfObject) {
+	public void put(Object object, Class<?> typeOfObject) {
 		if(object == null && typeOfObject == null) {
 			log.warning("негоже так... ");
+			return;
+		}
+		if(object != null) {
+			this.item = object;
 			return;
 		}
 		try {
@@ -30,6 +34,10 @@ public class Hand {
 			// кладем тогда в руку ... что попало
 			log.warning("Не удалось взять в руку " + typeOfObject.getName() + ". Положим туда то-нибудь =)");
 		}
+	}
+	
+	public Object getItem() {
+		return this.item;
 	}
 	
 }

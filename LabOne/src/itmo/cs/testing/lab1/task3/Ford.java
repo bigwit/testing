@@ -2,9 +2,8 @@ package itmo.cs.testing.lab1.task3;
 
 public class Ford extends Man {
 	
-	private Hand[] hands = new Hand[2];
-	
 	public Ford() {
+		super();
 		// при инициализации Форда кладем ему 
 		// в левую руку стеклянный флакончик
 		putVialToLeftHand();

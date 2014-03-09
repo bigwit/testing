@@ -5,9 +5,19 @@ public class Common {
 	// logic part
 	
 	Ford ford;
+	Artur artur;
 	
-	public void main() {
-		
+	
+	// действия второго предложения
+	public void sentenceTwo() {
+		// все что делал форд - делается при инициализации
+		artur = new Artur(); // артур 
+		// моргая глазами
+		artur.setEyesAction(new Action(Options.SIMPLE, "BLINK"));
+		// смотрел
+		artur.setAction(new Action(Options.SIMPLE, "WATCH"));
+		// на него (Форда)
+		artur.setFocus(ford);
 	}
 	
 	// инфа о Форде

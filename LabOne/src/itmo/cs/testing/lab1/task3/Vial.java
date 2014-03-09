@@ -1,5 +1,6 @@
 package itmo.cs.testing.lab1.task3;
 
+import java.awt.Color;
 import java.util.ArrayList;
 
 // флакончик
@@ -15,7 +16,7 @@ public class Vial {
 		options = new Options[1];
 		options[0] = Options.GLASS;
 		fishes = new ArrayList<>();
-		add(new Fish(Options.YELLOW, Options.SMALL));
+		add(new Fish(Color.YELLOW, Options.SMALL));
 	}
 	
 	// добавляем рыбку во флакончик

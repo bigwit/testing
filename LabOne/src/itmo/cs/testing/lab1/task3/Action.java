@@ -2,14 +2,14 @@ package itmo.cs.testing.lab1.task3;
 
 public class Action {
 	
-	private static final String DEFAULT_ACTION = "SWIM";
-	private static final Options DEFAULT_ACTION_EFFECT = Options.BLINK;
+	private static final String DEFAULT_ACTION = "SLEEP";
+	private static final Options DEFAULT_ACTION_EFFECT = Options.SIMPLE;
 	
 	private Options actionEffect;
 	private String action;
 	
 	public Action() {
-		actionEffect = Options.BLINK;
+		actionEffect = DEFAULT_ACTION_EFFECT;
 		this.action = DEFAULT_ACTION;
 	}
 	
