@@ -4,9 +4,7 @@ import static java.lang.Double.*;
 import static java.lang.Math.*;
 import static org.junit.Assert.*;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
