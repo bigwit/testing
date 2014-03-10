@@ -23,12 +23,21 @@ public class Common {
 	public void sentenceThree() {
 		artur = new Artur();
 		artur.setAction(new Action(Options.SIMPLE, "WANT"));
+		// создаем пожелания артура
 		Desire desireArtur = new Desire();
 		// за что можно было бы зацепиться
 		desireArtur.setActions(new Action(Options.SIMPLE, "BE"), new Action(Options.SIMPLE, "CLING"));
 		// что то ЗНАКОМОЕ. за что можно МЫСЛЕННО зацепиться
 		desireArtur.setOptions(Options.MENTALLY, Options.FAMILIAR_ABOUT);
 		artur.setDesire(desireArtur);
+	}
+	
+	// неполное предложение (последнее)
+	public void sentencesFour() {
+		artur = new Artur();
+		if(Dentrassi.getInstance().getUnderwear() != null) {
+			artur.setState(State.SURE);
+		}
 	}
 	
 	// инфа о Форде

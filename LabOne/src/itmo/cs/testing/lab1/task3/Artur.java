@@ -4,6 +4,8 @@ public class Artur extends Man {
 	
 	ActionDescription actionDescription;
 	
+	State state = State.SIMPLE;
+	
 	public void setActionDescription(Object desc) {
 		if(actionDescription == null)
 			actionDescription = new ActionDescription();
@@ -12,6 +14,14 @@ public class Artur extends Man {
 	
 	public Object getActionDescription() {
 		return actionDescription.getDescription(action);
+	}
+	
+	public void setState(State state) {
+		this.state = state;
+	}
+	
+	public State getState() {
+		return this.state;
 	}
 	
 }
