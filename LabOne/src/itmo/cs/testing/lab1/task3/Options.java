@@ -5,6 +5,8 @@ public enum Options {
 	GLASS,
 	SMALL,
 	SIMPLE,
-	WINK;
+	WINK,
+	MENTALLY,
+	FAMILIAR_ABOUT;
 	
 }
