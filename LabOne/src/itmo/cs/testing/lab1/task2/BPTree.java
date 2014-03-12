@@ -5,7 +5,9 @@ import java.util.*;
 @SuppressWarnings("rawtypes")
 public class BPTree<K, V> extends AbstractMap<K,V> implements SortedMap<K,V>
 {
-	private static Comparator defaultComp = new DefaultComparator();
+	private static final Comparator DEFAULT_COMPARATOR = new DefaultComparator();
+	private static final int DEFAULT_ORDER = 6;
+	private static final int DEFAULT_LEAF_ORDEF = 6;
 	
 	private Comparator comp;
 	private int order;
@@ -17,33 +19,9 @@ public class BPTree<K, V> extends AbstractMap<K,V> implements SortedMap<K,V>
 	private int modCount = Integer.MIN_VALUE;
 	private Set<Entry<K,V>> esInstance = (new SubMap()).entrySet();
 
-	/**
-	 * Creates a new BPTree of order and leaf order 3 and assumes that all keys implement Comparable.
-	 */
 	BPTree()
 	{
-		this(defaultComp, 6, 6);
-	}
-
-	/**
-	 * Creates a new BPTree of order and leaf order 3.
-	 * @param c Comparator to use to sort objects.
-	 */
-	BPTree(Comparator c)
-	{
-		this(c, 6, 6);
-	}
-
-	/**
-	 * Creates a new BPTree and assumes that all keys implement Comparable.
-	 * @param order Order of internal guide nodes.
-	 * @param leafOrder Order of leaf nodes.
-	 * @throws IllegalArgumentException thrown if order < 3 or leafOrder < 1.
-	 */
-	BPTree(int order, int leafOrder)
-		throws IllegalArgumentException
-	{
-		this(defaultComp, order, leafOrder);
+		this(DEFAULT_COMPARATOR, DEFAULT_ORDER, DEFAULT_LEAF_ORDEF);
 	}
 
 	/**
@@ -51,14 +29,12 @@ public class BPTree<K, V> extends AbstractMap<K,V> implements SortedMap<K,V>
 	 * @param c Comparator to use to sort objects.
 	 * @param order Order of internal guide nodes.
 	 * @param leafOrder Order of leaf nodes.
-	 * @throws IllegalArgumentException thrown if order < 3 or leafOrder < 1.
 	 */
 	BPTree(Comparator c, int order, int leafOrder)
 	{
-		this.comp = c;
-		this.order = order;
-		this.leafOrder = leafOrder;
-		
+		this.order = order < 1 ? DEFAULT_ORDER : order;
+		this.leafOrder = leafOrder < 1 ? DEFAULT_LEAF_ORDEF : leafOrder;
+		this.comp = c == null ? DEFAULT_COMPARATOR : c;
 		root = firstLeaf = new LeafNode();
 	}
 
@@ -66,7 +42,6 @@ public class BPTree<K, V> extends AbstractMap<K,V> implements SortedMap<K,V>
 	{
 		if(size == 0)
 			throw new NoSuchElementException();
-		
 		return firstLeaf.keys.get(0);
 	}
 	
@@ -78,7 +53,6 @@ public class BPTree<K, V> extends AbstractMap<K,V> implements SortedMap<K,V>
 		LeafNode cur = firstLeaf;
 		while(cur.next != null)
 			cur = cur.next;
-		
 		return cur.keys.get(cur.keys.size() - 1);
 	}
 	
