@@ -6,7 +6,9 @@ import static java.lang.Double.*;
 public class Mathematic {
 
 	public static double calcArctg(double argument, double accuracy) {
-		if (isNaN(argument) || isNaN(accuracy) || isInfinite(argument) || isInfinite(accuracy))
+		if (isNaN(argument) || isNaN(accuracy) 
+				|| isInfinite(argument) || isInfinite(accuracy)
+				|| abs(argument) >= 1)
 			return NaN;
 		final double sqrArg = pow(argument, 2);
 		double prev = 0.0;

@@ -34,8 +34,8 @@ public class MathematicTest {
 				{ NaN, 1e-3, NaN }, { 1.0, NaN, NaN } }));
 
 		for (double acc = 1e-3; acc > 1e-7; acc *= 1e-1) {
-			for (double x = -1; x < 1; x += 1e-1) {
-				data.add(new Object[] { x, acc, atan(x) });
+			for (double x = -2; x < 2; x += 1e-1) {
+				data.add(new Object[] { x, acc, (abs(x) < 1) ?  atan(x) : NaN });
 			}
 		}
 		return data;
