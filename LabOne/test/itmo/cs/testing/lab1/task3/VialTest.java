@@ -1,9 +1,8 @@
-package itmo.cs.testing.lab1.task2;
+package itmo.cs.testing.lab1.task3;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
-import itmo.cs.testing.lab1.task3.*;
 import itmo.cs.testing.lab1.task3.Fish.Size;
 import itmo.cs.testing.lab1.task3.Vial.Material;
 
