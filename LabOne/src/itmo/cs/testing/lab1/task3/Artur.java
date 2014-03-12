@@ -2,9 +2,9 @@ package itmo.cs.testing.lab1.task3;
 
 public class Artur extends Man {
 	
-	ActionDescription actionDescription;
+	private ActionDescription actionDescription;
 	
-	State state = State.SIMPLE;
+	private State state = State.SIMPLE;
 	
 	public void setActionDescription(Object desc) {
 		if(actionDescription == null)
@@ -23,5 +23,4 @@ public class Artur extends Man {
 	public State getState() {
 		return this.state;
 	}
-	
 }

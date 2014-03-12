@@ -5,8 +5,7 @@ import static org.mockito.Mockito.*;
 
 import itmo.cs.testing.lab1.task3.*;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
 
 public class ArturTest {
 

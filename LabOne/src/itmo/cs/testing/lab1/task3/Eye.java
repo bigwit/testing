@@ -23,6 +23,13 @@ public class Eye {
 	}
 	
 	/**
+	 * Моргает ли глаз
+	 */
+	public boolean isWink() {
+		return Options.WINK.equals(getAction().getActionEffect());
+	}
+	
+	/**
 	 * Установить фокус на указанный объект
 	 */
 	public void setFocus(Object object) {
