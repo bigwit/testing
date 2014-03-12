@@ -1,5 +1,7 @@
 package itmo.cs.testing.lab1.task3;
 
+import java.awt.Color;
+
 public class Common {
 	
 	// logic part
@@ -32,11 +34,32 @@ public class Common {
 		artur.setDesire(desireArtur);
 	}
 	
+	private String country = "Betelgeuse";
+	
 	// неполное предложение (последнее)
 	public void sentencesFour() {
+		// скворншельские матрицы
+		SkvornshelskMatrix[] matrix = new SkvornshelskMatrix[1];
+		
+		// человек с Бетельгейзе
+		Man someMan = new Man().setBirthplace(country);
+		// с маленькой желтой рыбкой в руках
+		someMan.putToHand(new Fish(Color.YELLOW, Options.SMALL));
+		// предлагает засунуть рыбу в ухо)))
+		someMan.setAction(new Action(Options.SIMPLE, "shove fish in ear"));
+		
 		artur = new Artur();
-		if(Dentrassi.getInstance().getUnderwear() != null) {
-			artur.setState(State.SURE);
+		// если бы рядом с нижним бельем дентрасси, скворншельскими 
+		// матрацами и человеком с Бетельгейзе, держащим маленькую 
+		// рыбку и предлагающим засунуть ее в ухо
+		if(Dentrassi.getInstance().getUnderwear() != null && matrix != null && someMan.getBirthplace().equals(country)) {
+			for(Eye eye : artur.getEyes()) {
+				// он увидел пакет кукурузных хлопьев
+				if(eye.getFocus().getClass() == CornflakesPacket.class) {
+					// он чувствовал бы себя увереннее
+					artur.setState(State.SURE);
+				}
+			}
 		}
 	}
 	

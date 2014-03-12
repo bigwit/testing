@@ -6,7 +6,7 @@ public class Eye {
 	
 	private Action action;
 	
-	private Man focus;
+	private Object focus;
 	
 	public Eye() {
 		action = new Action(Options.SIMPLE, DEFAULT_ACTION_NAME);
@@ -28,7 +28,7 @@ public class Eye {
 		this.focus = man;
 	}
 	
-	public Man getFocus() {
+	public Object getFocus() {
 		return this.focus;
 	}
 	
