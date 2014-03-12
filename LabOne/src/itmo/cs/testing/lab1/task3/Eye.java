@@ -22,10 +22,13 @@ public class Eye {
 		return this.action;
 	}
 	
-	public void setFocus(Man man) {
+	/**
+	 * Установить фокус на указанный объект
+	 */
+	public void setFocus(Object object) {
 		// если man = null значит глаз не смотрит 
 		// на человека. это норм.
-		this.focus = man;
+		this.focus = object;
 	}
 	
 	public Object getFocus() {

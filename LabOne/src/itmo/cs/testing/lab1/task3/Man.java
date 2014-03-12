@@ -44,9 +44,9 @@ public class Man {
 		}
 	}
 
-	public void setFocus(Man man) {
+	public void setFocus(Object object) {
 		for(Eye eye : this.eyes) {
-			eye.setFocus(man);
+			eye.setFocus(object);
 		}
 	}
 	
@@ -68,6 +68,20 @@ public class Man {
 	
 	public void putToHand(Object obj) {
 		this.hands[0].put(obj);
+	}
+	
+	/**
+	 * Сфокусирован ли человек на указанном объекте
+	 */
+	public boolean isFocused(Object object) {
+		if (object == null)
+			throw new IllegalArgumentException("nothing to compare");
+		for (Eye eye : eyes) {
+			Object focused = eye.getFocus();
+			if (object != focused)
+				return false;
+		}
+		return true;
 	}
 	
 	public Class<?> getTypeItemInHand() {
