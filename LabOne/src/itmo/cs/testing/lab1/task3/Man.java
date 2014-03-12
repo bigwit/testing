@@ -10,11 +10,20 @@ public class Man {
 	
 	protected String birthplace;
 
-	protected Hand[] hands = new Hand[2];
-	protected Eye[] eyes = new Eye[2];
+	protected Hand[] hands;
+	protected Eye[] eyes;
+	
+	{
+		hands = new Hand[2];
+		hands[0] = new Hand();
+		hands[1] = new Hand();
+		eyes = new Eye[2];
+		eyes[0] = new Eye();
+		eyes[1] = new Eye();
+	}
 
 	public Man() {
-		action = new Action();
+		action = Action.NOTHING;
 		birthplace = DEFAULT_BIRTHPLACE;
 	}
 
@@ -49,9 +58,8 @@ public class Man {
 		return this.desire;
 	}
 	
-	public Man setBirthplace(String bp) {
+	public void setBirthplace(String bp) {
 		this.birthplace = bp;
-		return this;
 	}
 	
 	public String getBirthplace() {
@@ -59,11 +67,12 @@ public class Man {
 	}
 	
 	public void putToHand(Object obj) {
-		this.hands[0].put(obj, obj.getClass());
+		this.hands[0].put(obj);
 	}
 	
 	public Class<?> getTypeItemInHand() {
-		return this.hands[0].getClass();
+		Object item = this.hands[0].getItem();
+		return (item != null) ? item.getClass() : null;
 	}
 	
 	public Eye[] getEyes() {

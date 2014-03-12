@@ -9,7 +9,7 @@ public class Eye {
 	private Object focus;
 	
 	public Eye() {
-		action = new Action(Options.SIMPLE, DEFAULT_ACTION_NAME);
+		action = new Action(Options.NOTHING, DEFAULT_ACTION_NAME);
 	}
 	
 	public void setAction(Action actn) {
