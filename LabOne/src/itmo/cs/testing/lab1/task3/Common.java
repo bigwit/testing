@@ -1,5 +1,7 @@
 package itmo.cs.testing.lab1.task3;
 
+import itmo.cs.testing.lab1.task3.Fish.Size;
+
 import java.awt.Color;
 
 public class Common {
@@ -15,20 +17,20 @@ public class Common {
 		// все что делал форд - делается при инициализации
 		artur = new Artur(); // артур 
 		// моргая глазами
-		artur.setEyesAction(new Action(Options.SIMPLE, "BLINK"));
+		artur.setEyesAction(new Action(Options.NOTHING, "BLINK"));
 		// смотрел
-		artur.setAction(new Action(Options.SIMPLE, "WATCH"));
+		artur.setAction(new Action(Options.NOTHING, "WATCH"));
 		// на него (Форда)
 		artur.setFocus(ford);
 	}
 	
 	public void sentenceThree() {
 		artur = new Artur();
-		artur.setAction(new Action(Options.SIMPLE, "WANT"));
+		artur.setAction(new Action(Options.NOTHING, "WANT"));
 		// создаем пожелания артура
 		Desire desireArtur = new Desire();
 		// за что можно было бы зацепиться
-		desireArtur.setActions(new Action(Options.SIMPLE, "BE"), new Action(Options.SIMPLE, "CLING"));
+		desireArtur.setActions(new Action(Options.NOTHING, "BE"), new Action(Options.NOTHING, "CLING"));
 		// что то ЗНАКОМОЕ. за что можно МЫСЛЕННО зацепиться
 		desireArtur.setOptions(Options.MENTALLY, Options.FAMILIAR_ABOUT);
 		artur.setDesire(desireArtur);
@@ -42,11 +44,12 @@ public class Common {
 		SkvornshelskMatrix[] matrix = new SkvornshelskMatrix[1];
 		
 		// человек с Бетельгейзе
-		Man someMan = new Man().setBirthplace(country);
+		Man someMan = new Man();
+		someMan.setBirthplace(country);
 		// с маленькой желтой рыбкой в руках
-		someMan.putToHand(new Fish(Color.YELLOW, Options.SMALL));
+		someMan.putToHand(new Fish(Color.YELLOW, Size.LITTLE));
 		// предлагает засунуть рыбу в ухо)))
-		someMan.setAction(new Action(Options.SIMPLE, "shove fish in ear"));
+		someMan.setAction(new Action(Options.NOTHING, "shove fish in ear"));
 		
 		artur = new Artur();
 		// если бы рядом с нижним бельем дентрасси, скворншельскими 

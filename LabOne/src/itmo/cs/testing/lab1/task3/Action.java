@@ -3,12 +3,12 @@ package itmo.cs.testing.lab1.task3;
 public class Action {
 	
 	private static final String DEFAULT_ACTION = "SLEEP";
-	private static final Options DEFAULT_ACTION_EFFECT = Options.SIMPLE;
+	private static final Options DEFAULT_ACTION_EFFECT = Options.NOTHING;
 	
 	private Options actionEffect;
 	private String action;
 	
-	public Action() {
+	protected Action() {
 		actionEffect = DEFAULT_ACTION_EFFECT;
 		this.action = DEFAULT_ACTION;
 	}
@@ -26,4 +26,5 @@ public class Action {
 		return this.actionEffect;
 	}
 	
+	public static final Action NOTHING = new Action();
 }

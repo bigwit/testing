@@ -9,7 +9,7 @@ public class Eye {
 	private Object focus;
 	
 	public Eye() {
-		action = new Action(Options.SIMPLE, DEFAULT_ACTION_NAME);
+		action = new Action(Options.NOTHING, DEFAULT_ACTION_NAME);
 	}
 	
 	public void setAction(Action actn) {
@@ -22,10 +22,20 @@ public class Eye {
 		return this.action;
 	}
 	
-	public void setFocus(Man man) {
+	/**
+	 * Моргает ли глаз
+	 */
+	public boolean isWink() {
+		return Options.WINK.equals(getAction().getActionEffect());
+	}
+	
+	/**
+	 * Установить фокус на указанный объект
+	 */
+	public void setFocus(Object object) {
 		// если man = null значит глаз не смотрит 
 		// на человека. это норм.
-		this.focus = man;
+		this.focus = object;
 	}
 	
 	public Object getFocus() {

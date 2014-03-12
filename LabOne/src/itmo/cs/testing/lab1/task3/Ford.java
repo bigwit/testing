@@ -4,13 +4,12 @@ public class Ford extends Man {
 	
 	public Ford() {
 		super();
-		// при инициализации Форда кладем ему 
-		// в левую руку стеклянный флакончик
-		putVialToLeftHand();
 	}
 	
-	private void putVialToLeftHand() {
-		hands[0].put(null, Vial.class);
+	/**
+	 * Держит ли Форд в руке флакончик
+	 */
+	public boolean hasVial() {
+		return (getTypeItemInHand() != null && getTypeItemInHand().equals(Vial.class));
 	}
-	
 }
