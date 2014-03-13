@@ -38,5 +38,10 @@ public class ArturTest {
 		
 		assertFalse(testArtur.isFocused(second));
 	}
+	
+	@After
+	public void tearDown() {
+		this.testArtur = null;
+	}
 
 }
