@@ -118,7 +118,11 @@ public class BPTreeTest {
 	@Test
 	public void testFirstPutAlg() {
 		StringBuilder expected = new StringBuilder();
-		expected.append("<startPut>").append("<not contain>");
+		expected
+			.append("<put>")
+			.append("<not-contain-key>")
+			.append("<leaf-put>")
+			.append("<new-key>");
 		this.bpTree.put(1, 1);
 		
 		assertEquals(expected.toString(), this.bpTree.getWay());
@@ -127,7 +131,14 @@ public class BPTreeTest {
 	@Test
 	public void testOtherPutAlg() {
 		StringBuilder expected = new StringBuilder();
-		expected.append("<startPut>").append("<not contain>").append("<startPut>");
+		expected
+			.append("<put>")
+			.append("<not-contain-key>")
+			.append("<leaf-put>")
+			.append("<new-key>")
+			.append("<put>")
+			.append("<leaf-put>")
+			.append("<key-exist>");
 		this.bpTree.put(1, 1);
 		this.bpTree.put(1, 0);
 		

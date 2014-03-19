@@ -2,7 +2,7 @@ package itmo.cs.testing.lab1.task2;
 
 import java.util.*;
 
-@SuppressWarnings("rawtypes")
+@SuppressWarnings("all")
 public class BPTree<K, V> extends AbstractMap<K, V> implements SortedMap<K, V> {
 	private static final Comparator DEFAULT_COMPARATOR = new DefaultComparator();
 	private static final int DEFAULT_ORDER = 6;
@@ -105,11 +105,11 @@ public class BPTree<K, V> extends AbstractMap<K, V> implements SortedMap<K, V> {
 	}
 	
 	public V put(K key, V value) {
-		wayTest.append("<startPut>");
+		wayTest.append("<put>");
 		if (key == null)
 			throw new NullPointerException();
 		if (!containsKey(key)) {
-			wayTest.append("<not contain>");
+			wayTest.append("<not-contain-key>");
 			size++;
 		}
 		// Get previous value at the key.
@@ -118,7 +118,7 @@ public class BPTree<K, V> extends AbstractMap<K, V> implements SortedMap<K, V> {
 		Node newNode = root.put(key, value);
 		// Create new root?
 		if (newNode != null) {
-			wayTest.append("<newNodeInRootNull>");
+			wayTest.append("<create-new-root>");
 			GuideNode newRoot = new GuideNode();
 			newRoot.keys.add(newNode.keys.get(0));
 			newRoot.children.add(root);
@@ -131,11 +131,13 @@ public class BPTree<K, V> extends AbstractMap<K, V> implements SortedMap<K, V> {
 	}
 
 	public V remove(Object key) {
+		wayTest.append("<remove>");
 		if (key == null)
 			throw new NullPointerException();
 		// Get value of key to be removed and then remove it.
 		V ret = get(key);
 		if (ret != null) {
+			wayTest.append("<remove-value>");
 			root.remove(key);
 			size--;
 		}
@@ -216,6 +218,7 @@ public class BPTree<K, V> extends AbstractMap<K, V> implements SortedMap<K, V> {
 		}
 
 		public Node put(K key, V value) {
+			wayTest.append("<guide-put>");
 			GuideNode newGuide = null;
 			int guideIndex = findGuideIndex(key);
 			// Recurse to child.
@@ -229,6 +232,7 @@ public class BPTree<K, V> extends AbstractMap<K, V> implements SortedMap<K, V> {
 
 				// Do we need to split?
 				if (keys.size() > order) {
+					wayTest.append("<new-guide>");
 					newGuide = new GuideNode();
 
 					newGuide.keys.clear();
@@ -264,6 +268,7 @@ public class BPTree<K, V> extends AbstractMap<K, V> implements SortedMap<K, V> {
 		 *         or 3 if this Node merged with its right sibling.
 		 */
 		public int remove(Object key) {
+			wayTest.append("<guide-remove>");
 			int guideIndex = findGuideIndex(key);
 
 			// Recurse to child.
@@ -271,10 +276,12 @@ public class BPTree<K, V> extends AbstractMap<K, V> implements SortedMap<K, V> {
 
 			// Was nothing removed?
 			if (result == 0) {
+				wayTest.append("<nothing-removed>");
 				return 0;
 			}
 			// Was a key removed but no nodes were merged?
 			else if (result == 1) {
+				wayTest.append("<no-nodes-were-merged>");
 				// It's possible that a key was moved from the left node
 				// or that the index 0 key was removed, and so we need to update
 				// the key for the main node.
@@ -284,6 +291,7 @@ public class BPTree<K, V> extends AbstractMap<K, V> implements SortedMap<K, V> {
 				// It's possible that a key was moved from the right node, and
 				// so we need to update the key for that node.
 				if (guideIndex + 1 < keys.size()) {
+					wayTest.append("<update-key>");
 					keys.remove(guideIndex + 1);
 					keys.add(guideIndex + 1,
 							children.get(guideIndex + 1).keys.get(0));
@@ -292,12 +300,14 @@ public class BPTree<K, V> extends AbstractMap<K, V> implements SortedMap<K, V> {
 
 			// Was the child node merged with its left sibling?
 			else if (result == 2) {
+				wayTest.append("<merged-left>");
 				children.remove(guideIndex);
 				keys.remove(guideIndex);
 			}
 
 			// Was the child node merged with its right sibling?
 			else if (result == 3) {
+				wayTest.append("<merged-right>");
 				children.remove(guideIndex + 1);
 				keys.remove(guideIndex + 1);
 			}
@@ -310,6 +320,7 @@ public class BPTree<K, V> extends AbstractMap<K, V> implements SortedMap<K, V> {
 			else {
 				// Does the left node have more keys than it needs?
 				if (prev != null && prev.keys.size() - 1 >= (order + 1) / 2) {
+					wayTest.append("<left-have-more-keys>");
 					// Simply move the last key from the previous node.
 					int prevIndex = prev.keys.size() - 1;
 					K k = prev.keys.get(prevIndex);
@@ -324,6 +335,7 @@ public class BPTree<K, V> extends AbstractMap<K, V> implements SortedMap<K, V> {
 				// Does the right node have more keys than it needs?
 				else if (next != null
 						&& next.keys.size() - 1 >= (order + 1) / 2) {
+					wayTest.append("<right-have-more-keys>");
 					// Simply move the first key from the next node.
 					K k = next.keys.get(0);
 					Node c = next.children.get(0);
@@ -336,6 +348,7 @@ public class BPTree<K, V> extends AbstractMap<K, V> implements SortedMap<K, V> {
 
 				// Otherwise, merge with left?
 				else if (prev != null) {
+					wayTest.append("<merge-with-left>");
 					// We actually want to keep the left node, so add all of the
 					// keys in this node to the left node.
 					prev.keys.addAll(keys);
@@ -349,6 +362,7 @@ public class BPTree<K, V> extends AbstractMap<K, V> implements SortedMap<K, V> {
 
 				// Otherwise, merge with right?
 				else if (next != null) {
+					wayTest.append("<merge-with-right>");
 					// Add all keys in right node to this node.
 					keys.addAll(next.keys);
 					children.addAll(next.children);
@@ -383,6 +397,7 @@ public class BPTree<K, V> extends AbstractMap<K, V> implements SortedMap<K, V> {
 		}
 
 		public Node put(K key, V value) {
+			wayTest.append("<leaf-put>");
 			LeafNode newLeaf = null;
 			// Find insert index.
 			int insertIndex = 0;
@@ -394,8 +409,10 @@ public class BPTree<K, V> extends AbstractMap<K, V> implements SortedMap<K, V> {
 
 			// If the key already exists, then just replace.
 			if (insertIndex < keys.size() && keys.get(insertIndex).equals(key)) {
+				wayTest.append("<key-exist>");
 				values.set(insertIndex, value);
 			} else {
+				wayTest.append("<new-key>");
 				// Insert the new key and value at the found index.
 				keys.add(insertIndex, key);
 				values.add(insertIndex, value);
@@ -436,6 +453,7 @@ public class BPTree<K, V> extends AbstractMap<K, V> implements SortedMap<K, V> {
 		 *         or 3 if this Node merged with its right sibling.
 		 */
 		public int remove(Object key) {
+			wayTest.append("<remove>");
 			int leafIndex = findLeafIndex(key);
 			// Was the specified key not found?
 			if (leafIndex == -1)
@@ -453,6 +471,7 @@ public class BPTree<K, V> extends AbstractMap<K, V> implements SortedMap<K, V> {
 			else {
 				// Does the left node have more keys than it needs?
 				if (prev != null && prev.keys.size() - 1 >= (leafOrder + 1) / 2) {
+					wayTest.append("<left-have-more-keys>");
 					// Simply move the last key from the previous node.
 					int prevIndex = prev.keys.size() - 1;
 					K k = prev.keys.get(prevIndex);
@@ -467,6 +486,7 @@ public class BPTree<K, V> extends AbstractMap<K, V> implements SortedMap<K, V> {
 				// Does the right node have more keys than it needs?
 				else if (next != null
 						&& next.keys.size() - 1 >= (leafOrder + 1) / 2) {
+					wayTest.append("<rigth-have-more-keys>");
 					// Simply move the first key from the next node.
 					K k = next.keys.get(0);
 					V v = next.values.get(0);
@@ -479,6 +499,7 @@ public class BPTree<K, V> extends AbstractMap<K, V> implements SortedMap<K, V> {
 
 				// Otherwise, merge with left?
 				else if (prev != null) {
+					wayTest.append("<merge-with-left>");
 					// We actually want to keep the left node, so add all of the
 					// keys in this node to the left node.
 					prev.keys.addAll(keys);
@@ -492,6 +513,7 @@ public class BPTree<K, V> extends AbstractMap<K, V> implements SortedMap<K, V> {
 
 				// Otherwise, merge with right?
 				else if (next != null) {
+					wayTest.append("<merge-with-right>");
 					// Add all keys in right node to this node.
 					keys.addAll(next.keys);
 					values.addAll(next.values);
