@@ -84,18 +84,23 @@ public class BPTree<K, V> extends AbstractMap<K, V> implements SortedMap<K, V> {
 	}
 
 	public V get(Object key) {
+		wayTest.append("<get>");
 		Node cur = root;
 		while (cur instanceof BPTree.GuideNode) {
+			wayTest.append("<find-guide-node>");
 			GuideNode gn = (GuideNode) cur;
 			int index = findGuideIndex(gn, key);
 			cur = gn.children.get(index);
 		}
 		LeafNode ln = (LeafNode) cur;
 		int index = findLeafIndex(ln, key);
-		if (index == -1)
+		if (index == -1) {
+			wayTest.append("<not-contain>");
 			return null;
-		else
+		} else {
+			wayTest.append("<contain>");
 			return ln.values.get(index);
+		}
 	}
 
 	private StringBuilder wayTest = new StringBuilder();
@@ -575,10 +580,12 @@ public class BPTree<K, V> extends AbstractMap<K, V> implements SortedMap<K, V> {
 		}
 
 		public V get(Object key) {
-			if (checkKey(key))
+			if (checkKey(key)) {
+				wayTest.append("<submap-get>");
 				return BPTree.this.get(key);
-			else
+			} else {
 				return null;
+			}
 		}
 
 		public V put(K key, V value) {
