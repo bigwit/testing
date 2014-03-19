@@ -32,4 +32,12 @@ public class Desire {
 		this.place = place;
 	}
 	
+	@Override
+	public boolean equals(Object other) {
+		Desire notThis = (Desire)other;
+		return notThis.actions.size() == this.actions.size() &&
+				notThis.options.size() == this.options.size() &&
+				notThis.place.equals(this.place);
+	}
+	
 }

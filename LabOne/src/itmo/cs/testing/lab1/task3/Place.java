@@ -17,4 +17,8 @@ public class Place {
 		return this.place;
 	}
 	
+	public boolean equals(Object other) {
+		return ((Place)other).place.equals(this.place);
+	}
+	
 }
