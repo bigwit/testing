@@ -11,6 +11,7 @@ import java.util.Set;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class BPTreeTest {
@@ -117,32 +118,104 @@ public class BPTreeTest {
 	
 	@Test
 	public void testFirstPutAlg() {
-		StringBuilder expected = new StringBuilder();
-		expected
+		String expected = new StringBuilder()
 			.append("<put>")
 			.append("<not-contain-key>")
+			.append("<get>")
+			.append("<not-contain>")
 			.append("<leaf-put>")
-			.append("<new-key>");
+			.append("<new-key>")
+			.toString();
 		this.bpTree.put(1, 1);
 		
-		assertEquals(expected.toString(), this.bpTree.getWay());
+		assertThat(expected, is(bpTree.getWay()));
 	}
 	
 	@Test
 	public void testOtherPutAlg() {
-		StringBuilder expected = new StringBuilder();
-		expected
+		String expected = new StringBuilder()
 			.append("<put>")
 			.append("<not-contain-key>")
+			.append("<get>")
+			.append("<not-contain>")
 			.append("<leaf-put>")
 			.append("<new-key>")
 			.append("<put>")
+			.append("<get>")
+			.append("<contain>")
 			.append("<leaf-put>")
-			.append("<key-exist>");
+			.append("<key-exist>")
+			.toString();
 		this.bpTree.put(1, 1);
 		this.bpTree.put(1, 0);
 		
-		assertEquals(expected.toString(), this.bpTree.getWay());
+		assertThat(expected, is(bpTree.getWay()));
+	}
+	
+	@Test
+	public void testGetNonexistingElement() {
+		String expected = new StringBuilder()
+			.append("<get>")
+			.append("<not-contain>")
+			.toString();
+		
+		bpTree.get(3);
+		
+		assertThat(expected, is(bpTree.getWay()));
+	}
+	
+	@Test
+	public void testGetElement() {
+		String expected = new StringBuilder()
+			.append("<put>")
+			.append("<not-contain-key>")
+			.append("<get>")
+			.append("<not-contain>")
+			.append("<leaf-put>")
+			.append("<new-key>")
+			.append("<get>")
+			.append("<contain>")
+			.toString();
+		bpTree.put(1, 2);
+		int result = bpTree.get(1);
+		
+		assertThat(result, is(2));
+		assertThat(expected, is(bpTree.getWay()));
+	}
+	
+	@Test
+	public void testRemoveElement() {
+		String expected = new StringBuilder()
+			.append("<put>")
+			.append("<not-contain-key>")
+			.append("<get>")
+			.append("<not-contain>")
+			.append("<leaf-put>")
+			.append("<new-key>")
+			.append("<remove>")
+			.append("<get>")
+			.append("<contain>")
+			.append("<remove-value>")
+			.append("<remove>")
+			.toString();
+		
+		bpTree.put(1, 2);
+		bpTree.remove(1);
+		
+		assertThat(expected, is(bpTree.getWay()));
+	}
+	
+	@Test
+	public void testRemoveNonexistingElement() {
+		String expected = new StringBuilder()
+			.append("<remove>")
+			.append("<get>")
+			.append("<not-contain>")
+			.toString();
+		
+		bpTree.remove(1);
+		
+		assertThat(expected, is(bpTree.getWay()));
 	}
 	
 	@After
