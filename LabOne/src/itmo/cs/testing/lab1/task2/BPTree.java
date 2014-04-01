@@ -80,7 +80,7 @@ public class BPTree<K, V> extends AbstractMap<K, V> implements SortedMap<K, V> {
 			cur = gn.children.get(index);
 		}
 		LeafNode ln = (LeafNode) cur;
-		return findLeafIndex(ln, key) != -1;
+		return findLeafIndex(ln, key) != 0;
 	}
 
 	public V get(Object key) {
@@ -186,7 +186,7 @@ public class BPTree<K, V> extends AbstractMap<K, V> implements SortedMap<K, V> {
 				return i;
 		}
 
-		return -1;
+		return 0;
 	}
 
 	private abstract class Node {
