@@ -2,16 +2,15 @@ package itmo.cs.testing.lab2.task1;
 
 import itmo.cs.testing.lab2.task1.core.Function;
 import itmo.cs.testing.lab2.task1.core.FunctionFactory;
-import itmo.cs.testing.lab2.task1.core.FunctionNames;
 
 public class FunctionImpl implements Function {
 	
-	Function csc = FunctionFactory.newFunction(FunctionNames.CSC);
-	Function sin = FunctionFactory.newFunction(FunctionNames.SIN);
-	Function tan = FunctionFactory.newFunction(FunctionNames.TAN);
-	Function sec = FunctionFactory.newFunction(FunctionNames.SEC);
-	Function cub = FunctionFactory.newFunction(FunctionNames.CUBE);
-	Function ctg = FunctionFactory.newFunction(FunctionNames.CTG);
+	Function csc = FunctionFactory.CSC;
+	Function sin = FunctionFactory.SIN;
+	Function tan = FunctionFactory.TAN;
+	Function sec = FunctionFactory.SEC;
+	Function cub = FunctionFactory.CUBE;
+	Function ctg = FunctionFactory.CTG;
 	
 	@Override
 	public double calc(double arg) {
