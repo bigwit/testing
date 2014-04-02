@@ -44,7 +44,6 @@ public class MathematicTest {
 	@Test
 	public void shouldReturnCorrectFunctionResult() {
 		double result = Mathematic.calcArctg(argument, accuracy);
-
 		assertEquals(expected, result, accuracy);
 	}
 

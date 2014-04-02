@@ -5,6 +5,21 @@
 	<artifactId>testing-lab1</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>LabOne</name>
+	
+	<developers>
+	    <developer>
+	        <name>Kurasov N.</name>
+	        <roles>
+	            <role>tester</role>
+	        </roles>
+	    </developer>
+	    <developer>
+	        <name>Pismak A.</name>
+	        <roles>
+	            <role>tester</role>
+	        </roles>
+	    </developer>
+	</developers>
 
 	<dependencies>
 		<dependency>
