@@ -1,20 +1,32 @@
 package itmo.cs.testing.lab2.task1;
 
-import itmo.cs.testing.lab2.task1.core.Function;
-import itmo.cs.testing.lab2.task1.core.Functions;
+import static itmo.cs.testing.lab2.task1.core.Functions.*;
 
-public class FunctionImpl implements Function {
+import static java.lang.Math.pow;
+import itmo.cs.testing.lab2.task1.core.AbstractFunction;
+import itmo.cs.testing.lab2.task1.core.Function;
+
+public class FunctionImpl extends AbstractFunction {
+
+	private Function csc;
+	private Function sin;
+	private Function tan;
+	private Function sec;
+	private Function ctg;
 	
-	Function csc = Functions.CSC;
-	Function sin = Functions.SIN;
-	Function tan = Functions.TAN;
-	Function sec = Functions.SEC;
-	Function cub = Functions.CUBE;
-	Function ctg = Functions.CTG;
-	
+	public FunctionImpl(double acc) {
+		super(acc);
+		csc = createArccosec(acc);
+		sin = createArcsin(acc);
+		tan = createArctg(acc);
+		sec = createArcsec(acc);
+		ctg = createArctg(acc);
+	}
+
 	@Override
 	public double calc(double arg) {
-		return ((cub.calc(csc.calc(arg) - tan.calc(arg)) * sec.calc(arg)) / 
-				(sin.calc(arg) - ctg.calc(arg))) - sec.calc(arg);
+		return ((pow(csc.calc(arg) - tan.calc(arg), 3) * sec
+				.calc(arg)) / (sin.calc(arg) - ctg.calc(arg)))
+				- sec.calc(arg);
 	}
 }

@@ -6,11 +6,23 @@ public final class Functions {
 
 	private Functions() {}
 	
-	public static final Function CSC = new Csc();
-	public static final Function TAN = new Tan();
-	public static final Function SEC = new Sec();
-	public static final Function CTG = new Ctg();
-	public static final Function CUBE = new Cube();
-	public static final Function SIN = new Sin();
-
+	public static Function createArctg(double acc) {
+		return new Arctg(acc);
+	}
+	
+	public static Function createArcctg(double acc) {
+		return new Arcctg(acc);
+	}
+	
+	public static Function createArccosec(double acc) {
+		return new Arccosec(acc);
+	}
+	
+	public static Function createArcsec(double acc) {
+		return new Arcsec(acc);
+	}
+	
+	public static Function createArcsin(double acc) {
+		return new Arcsin(acc);
+	}
 }
