@@ -27,6 +27,6 @@ public class Mathematic {
 		
 		return result;
 	}
-
+	
 	private static final int MAX_ITERATIONS = 50_000_000;
 }
