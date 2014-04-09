@@ -2,16 +2,21 @@ package itmo.cs.testing.lab2.utils;
 
 public class ResultUnit {
 	
-	double x;
+	private double x;
+	
+	private double y;
+	
+	public ResultUnit() {
+		super();
+	}
 	
 	public double getX() {
 		return x;
 	}
+	
 	public void setX(double x) {
 		this.x = x;
 	}
-	
-	double y;
 	
 	public double getY() {
 		return y;

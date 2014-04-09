@@ -8,9 +8,9 @@ import java.util.logging.Logger;
 
 public class Parser {
 
-	private static Logger log = Logger.getLogger(Parser.class.getName());
+	private static final Logger log = Logger.getLogger(Parser.class.getName());
 
-	private static String DELIMITER = "	";
+	private static final String DELIMITER = "	";
 
 	public static Collection<ResultUnit> parse(String resource) {
 		Collection<ResultUnit> result = new ArrayList<>();
@@ -19,9 +19,10 @@ public class Parser {
 			log.warning(String.format("Resource %s not found", resource));
 			throw new IllegalArgumentException();
 		}
-		Scanner scan = new Scanner(input);
-		while (scan.hasNext()) {
-			result.add(getResultUnit(scan.nextLine()));
+		try (Scanner scan = new Scanner(input)) {
+			while (scan.hasNext()) {
+				result.add(getResultUnit(scan.nextLine()));
+			}
 		}
 		return result;
 	}
@@ -33,7 +34,8 @@ public class Parser {
 			res.setX(Double.parseDouble(s[0]));
 			res.setY(Double.parseDouble(s[1]));
 		} catch (NumberFormatException | IndexOutOfBoundsException e) {
-			log.warning("Parse exception couse:\n " + e.getStackTrace().toString());
+			log.warning("Parse exception couse:\n "
+					+ e.getStackTrace().toString());
 		}
 		return res;
 	}
