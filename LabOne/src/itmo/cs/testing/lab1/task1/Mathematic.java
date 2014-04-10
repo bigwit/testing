@@ -6,10 +6,15 @@ import static java.lang.Double.*;
 public class Mathematic {
 
 	public static double calcArctg(double argument, double accuracy) {
-		if (isNaN(argument) || isNaN(accuracy) 
-				|| isInfinite(argument) || isInfinite(accuracy)
-				|| abs(argument) >= 1)
+		if (isNaN(argument) || isNaN(accuracy) || isInfinite(accuracy)) {
 			return NaN;
+		}
+		if (isInfinite(argument)) {
+			return (argument < 0) ? -PI / 2 : PI / 2;
+		}
+		if (abs(argument) >= 1) {
+			return NaN;
+		}
 		final double sqrArg = pow(argument, 2);
 		double prev = 0.0;
 		double cur = argument;
@@ -20,7 +25,8 @@ public class Mathematic {
 		do {
 			prev = cur;
 			numerator *= sqrArg;
-			cur = pow(-1, i) * numerator / ((i++ << 1) + 1);
+			cur = pow(-1, i) * numerator / ((i * 2) + 1);
+			i++;
 			result += cur;
 		} while (abs(prev - cur) > accuracy && i < MAX_ITERATIONS);
 			

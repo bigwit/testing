@@ -5,7 +5,7 @@ import itmo.cs.testing.lab2.utils.Parser;
 public class StubArccosec extends StubFunction {
 
 	public StubArccosec() {
-		super(Parser.parse("arccosec.txt"));
+		super(Parser.parse("/arccosec.txt"));
 	}
 
 	@Override

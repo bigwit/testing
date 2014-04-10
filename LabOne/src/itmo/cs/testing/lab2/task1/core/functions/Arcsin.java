@@ -12,7 +12,9 @@ public class Arcsin extends AbstractFunction {
 
 	@Override
 	public double calc(double x) {
-		return calcArctg(x / sqrt(1 - pow(x, 2)), getAccuracy());
+		double r = sqrt(1 - pow(x, 2));
+		x = x / r;
+		return calcArctg(x, getAccuracy());
 	}
 
 }

@@ -12,7 +12,7 @@ public class Arcctg extends AbstractFunction {
 
 	@Override
 	public double calc(double arg) {
-		return calcArctg(1 / arg, getAccuracy());
+		return calcArctg(1.0 / arg, getAccuracy());
 	}
 
 }
