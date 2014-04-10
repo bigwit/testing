@@ -1,7 +1,6 @@
 package itmo.cs.testing.lab2.task1;
 
 import static org.junit.Assert.*;
-import static org.junit.Assume.*;
 import static org.hamcrest.CoreMatchers.*;
 
 import itmo.cs.testing.lab2.task1.core.Function;
@@ -36,7 +35,6 @@ public class FunctionTest {
 		for (double x = -1.0; x <= 1.0; x += 0.1) {
 			double actualResult = testExpr.calc(x);
 			double expected = ETALON.calc(x);
-			assumeThat(actualResult, not(Double.NaN));
 			assertEquals(expected, actualResult, ACCURACY * 10);
 		}
 	}

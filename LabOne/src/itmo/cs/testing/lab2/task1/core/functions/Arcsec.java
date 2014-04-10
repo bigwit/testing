@@ -13,7 +13,7 @@ public class Arcsec extends AbstractFunction {
 
 	@Override
 	public double calc(double x) {
-		x = 1 / x;
+		x = 1.0 / x;
 		return 2 * calcArctg(sqrt((1 - x) / (1 + x)), getAccuracy());
 	}
 
